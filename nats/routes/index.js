@@ -15,6 +15,8 @@ async function start() {
 
   nc.publish("hello", sc.encode("world"));
   nc.publish("hello", sc.encode("again"));
+
+  return "[OK] test";
 }
 
 start().then(r => console.log(r));
