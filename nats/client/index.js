@@ -3,11 +3,7 @@ import { connect } from "nats";
 class Client {
     constructor() {
         this.servers = [
-            {},
-            { servers: ["demo.nats.io:4442", "demo.nats.io:4222"] },
-            { servers: "demo.nats.io:4443" },
-            { port: 4222 },
-            { servers: "localhost" },
+            { servers: ['nats://127.0.0.1:4222'] }
         ];
     }
 
