@@ -1,28 +1,24 @@
 const nats = require('nats')
+const e = require("express");
 
 class Client {
     constructor() {
-        this.servers = [
-            { servers: ['nats://127.0.0.1:4222'] }
-        ];
+        this.server = [{servers: 'nats://localhost:4222'}]
     }
 
-    connect() {
-        this.servers.forEach(async(v) => {
-            try {
-                const nc = await nats.connect(v);
+    async connect() {
+        try {
+            const nc = await nats.connect(this.server);
 
-                console.log(`connected to ${nc.getServer()}`);
+            console.log(`connected to ${ nc.getServer() }`);
 
-                return nc;
-            } catch (err) {
-                console.log(`error connecting to ${JSON.stringify(v)}`);
+            return nc;
+        } catch (err) {
+            console.log(`error connecting to ${JSON.stringify(this.server)}`);
+            console.error(err)
 
-                return null;
-            }
-        });
-
-        return null;
+            return null;
+        }
     }
 }
 
