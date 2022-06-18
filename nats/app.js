@@ -6,7 +6,6 @@ const logger = require('morgan');
 
 // importing our routes
 const indexRouter = require('./routes/index');
-const messageRouter = require('./routes/message');
 
 // creating an express app
 let app = express();
@@ -14,9 +13,6 @@ let app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-// web socket express
-let expressWs = require('express-ws')(app);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* routes */
 app.use('/', indexRouter);
-app.use('/api', messageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(_req, _res, next) {
