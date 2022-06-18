@@ -1,4 +1,4 @@
-import { connect } from "nats";
+const nats = require('nats')
 
 class Client {
     constructor() {
@@ -10,7 +10,7 @@ class Client {
     connect() {
         this.servers.forEach(async(v) => {
             try {
-                const nc = await connect(v);
+                const nc = await nats.connect(v);
 
                 console.log(`connected to ${nc.getServer()}`);
 
@@ -26,4 +26,4 @@ class Client {
     }
 }
 
-module.exports = Client;
+module.exports = new Client();
