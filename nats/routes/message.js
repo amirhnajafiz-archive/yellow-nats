@@ -4,14 +4,19 @@ const router = express.Router();
 const cli = require('../client');
 const connection = cli.prototype.connect();
 
+import { StringCodec } from "nats";
+const sc = StringCodec();
 
-/* TODO: publish a message on nats */
-router.post('/publish', function (_req, res, _next) {
+
+
+router.post('/publish', function (req, res, _next) {
     if (connection === null) {
         return res.status(503).send({
             message: "Initial server error"
         })
     }
+
+    connection.publish(req.body['message'], sc.encode(req.body['topic']))
 })
 
 /* TODO: subscribe on a message */
