@@ -19,13 +19,19 @@ router.post('/publish', function (req, res, _next) {
     connection.publish(req.body['message'], sc.encode(req.body['topic']))
 })
 
-/* TODO: subscribe on a message */
-router.get('/subscribe', function (_req, res, _next) {
+
+router.ws('/subscribe', function (ws, req) {
     if (connection === null) {
-        return res.status(503).send({
-            message: "Initial server error"
-        })
+        ws.send('[Error] Nats connection')
     }
+
+    const sub = connection.subscribe(req.body['topic']);
+
+    (async () => {
+        for await (const m of sub) {
+            ws.send(m.data)
+        }
+    })();
 })
 
 module.exports = router;
