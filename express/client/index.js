@@ -3,7 +3,7 @@ const nats = require('nats')
 class Client {
     constructor() {
         this.server = [
-            {servers: 'express://localhost:4222'}
+            {servers: 'nats://localhost:4222'}
         ];
     }
 
@@ -25,6 +25,12 @@ class Client {
     async start() {
         const nc = await this.connect()
         const sc = require('nats').StringCodec()
+
+        if (nc === null) {
+            console.error("Nats connection failed")
+
+            return
+        }
 
         const sub = nc.subscribe("hello");
         (async () => {
