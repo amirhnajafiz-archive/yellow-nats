@@ -3,7 +3,7 @@ const nats = require('nats')
 class Client {
     constructor() {
         this.server = [
-            {servers: 'nats://localhost:4222'}
+            {servers: 'express://localhost:4222'}
         ];
     }
 
