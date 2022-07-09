@@ -1,5 +1,4 @@
 const st = require('node-nats-streaming')
-const e = require("express");
 
 class Client {
     constructor() {
@@ -57,7 +56,9 @@ class Client {
         })
 
         sc.on('close', () => {
-            console.log("[STAN] Connection closed")
+            console.log("[STAN] Connection closed");
         })
     }
 }
+
+module.exports = new Client();
