@@ -21,12 +21,14 @@ app.set('port', port);
 const server = http.createServer(app);
 
 /**
+ * Nats clients
+ */
+sc = require('../client')
+sc()
+
+/**
  * Listen on provided port, on all network interfaces.
  */
-
-const cli = require('../client')
-cli.start().then(r => console.log(r));
-
 console.log('[OK] server started on localhost:'+port);
 server.listen(port);
 server.on('error', onError);
