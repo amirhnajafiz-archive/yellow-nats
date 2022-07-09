@@ -1,5 +1,5 @@
 function start_clients() {
-    const cli = require('../client/nats')
+    const cli = require('./nats')
     cli.start().then(r => console.log(r));
 }
 
