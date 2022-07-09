@@ -1,5 +1,27 @@
-const sc = require('node-nats-streaming')
-    .connect('test-cluster', 'test')
+const st = require('node-nats-streaming')
+const e = require("express");
+
+class Client {
+    constructor() {
+        this.cluster = "";
+        this.client = "";
+    }
+
+    connect() {
+        try {
+            const sc = st.connect(this.cluster, this.client);
+
+            console.log(`connect to ${ sc.eventNames() }`);
+
+            return sc;
+        } catch (err) {
+            console.log(`error connection to ${ this.cluster }`);
+            console.error(err);
+
+            return null;
+        }
+    }
+}
 
 sc.on('connect', () => {
     // Simple Publisher (all publishes are async in the node version of the client)
