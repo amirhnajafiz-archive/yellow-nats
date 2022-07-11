@@ -1,9 +1,9 @@
 // requiring nats
-const nats = require('nats')
-const sc = require('nats').StringCodec()
+const nats = require('nats');
+const sc = require('nats').StringCodec();
 
 // choosing a topic
-const topic = "event"
+const topic = "event";
 
 // data to send
 const dataset = [
@@ -13,7 +13,7 @@ const dataset = [
     "got and event",
     "1 2 3",
     "this is a test"
-]
+];
 
 // setting the nats servers information
 cluster = [
@@ -34,7 +34,7 @@ async function connect() {
     } catch (err) {
         // if an error occurs during the nats connecting
         console.error(`error connecting to ${JSON.stringify(this.server)}`);
-        console.error(err)
+        console.error(err);
 
         return null;
     }
@@ -52,25 +52,25 @@ async function handler(sub) {
 // trying to test our nats server
 async function test() {
     // first we connect to nats server
-    const nc = await connect()
+    const nc = await connect();
 
     if (nc === null) {
-        console.error("Nats connection failed")
+        console.error("Nats connection failed");
 
-        return
+        return;
     }
 
     // subscribing on a topic
     const sub = nc.subscribe(topic);
 
     // setting the handler
-    handler(sub).then(r => console.log(r))
+    handler(sub).then(r => console.log(r));
 
     // publish on that topic
     dataset.forEach((msg) => {
-        nc.publish(topic, sc.encode(msg))
-    })
+        nc.publish(topic, sc.encode(msg));
+    });
 }
 
 // begin testing
-test().then(r => console.log(r))
+test().then(r => console.log(r));
