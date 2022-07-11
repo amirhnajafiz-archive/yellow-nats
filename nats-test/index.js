@@ -2,6 +2,19 @@
 const nats = require('nats')
 const sc = require('nats').StringCodec()
 
+// choosing a topic
+const topic = "event"
+
+// data to send
+const dataset = [
+    "hello",
+    "how are you?",
+    "send an event",
+    "got and event",
+    "1 2 3",
+    "this is a test"
+]
+
 // setting the nats servers information
 cluster = [
     {servers: 'nats://localhost:4222'}
@@ -48,14 +61,15 @@ async function test() {
     }
 
     // subscribing on a topic
-    const sub = nc.subscribe("hello");
+    const sub = nc.subscribe(topic);
 
     // setting the handler
     handler(sub).then(r => console.log(r))
 
     // publish on that topic
-    nc.publish("hello", sc.encode("world"));
-    nc.publish("hello", sc.encode("again"));
+    dataset.forEach((msg) => {
+        nc.publish(topic, sc.encode(msg))
+    })
 }
 
 // begin testing
