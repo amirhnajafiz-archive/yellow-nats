@@ -49,4 +49,4 @@ class Client {
 
 // creating a new client and go
 c = new Client()
-await c.start()
+c.start().then(r => console.log(r))
