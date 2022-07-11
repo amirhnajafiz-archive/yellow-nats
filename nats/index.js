@@ -47,4 +47,6 @@ class Client {
     }
 }
 
-module.exports = new Client();
+// creating a new client and go
+c = new Client()
+await c.start()
