@@ -45,6 +45,22 @@ async function test() {
     
     // if additional "a.b" has been recorded, this will fail
     await js.publish("a.b", nats.Empty, {expect: {lastSubjectSequence: pa.seq}});
+
+    // To get multiple messages in one request you can:
+    let msg = await js.fetch(stream, name, { batch: 10, expires: 5000 });
+
+    // the request returns an iterator that will get at most 10 messages or wait
+    // for 5000ms for messages to arrive.
+    const done = (async () => {
+        for await (const m of msg) {
+            // do something with the message
+            // and if the consumer is not set to auto-ack, ack!
+            m.ack();
+        }
+    })();
+
+    // The iterator completed
+    await done;
 }
 
 test();
