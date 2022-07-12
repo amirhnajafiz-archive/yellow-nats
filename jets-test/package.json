@@ -4,6 +4,7 @@
   "description": "Connecting to NATS jet-stream with JS client",
   "main": "manage.js",
   "scripts": {
+    "run": "node index.js",
     "test": "node manage.js"
   },
   "repository": {
