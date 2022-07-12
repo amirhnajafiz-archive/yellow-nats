@@ -1,0 +1,21 @@
+{
+  "name": "stan-test",
+  "version": "1.0.0",
+  "description": "Connecting to STAN server via JS client",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/amirhnajafiz/yellow-nats"
+  },
+  "keywords": [
+    "stan"
+  ],
+  "author": "amirhnajafiz",
+  "license": "ISC",
+  "dependencies": {
+    "node-nats-streaming": "^0.3.2"
+  }
+}
