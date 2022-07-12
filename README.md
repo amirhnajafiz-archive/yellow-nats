@@ -1,7 +1,7 @@
 # Yellow NATS
 
 <p align="center">
-  <img src=".github/readme/logo.png" width="400" alt="logo" />
+  <img src=".github/readme/logo.jpeg" width="191" alt="logo" />
 </p>
 
 Examples of connecting to **NATS** server via _javascript_ client.
