@@ -9,7 +9,9 @@ const CLIENT_ID = "";
 const topic = "event";
 
 // opening a connection
-const sc = STAN.connect(CLUSTER_ID, CLIENT_ID);
+const sc = STAN.connect(CLUSTER_ID, CLIENT_ID, {
+    url: 'nats://localhost:4222',
+});
 
 // after connection publish on a topic
 sc.on('connect', () => {
