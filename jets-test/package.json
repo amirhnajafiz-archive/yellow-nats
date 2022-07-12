@@ -2,9 +2,9 @@
   "name": "jets-test",
   "version": "1.0.0",
   "description": "Connecting to NATS jet-stream with JS client",
-  "main": "index.js",
+  "main": "manage.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node manage.js"
   },
   "repository": {
     "type": "git",
